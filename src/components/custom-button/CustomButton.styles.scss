@@ -1,5 +1,5 @@
 .custom-button {
-    // min-width: 165px;
+    min-width: 155px;
     width: auto;
     height: 50px;
     letter-spacing: 0.5px;
@@ -14,6 +14,7 @@
     border: none;
     cursor: pointer;
     border: 1px solid transparent;
+    text-align: center;
     &:hover {
         background-color: white;
         color: black;
