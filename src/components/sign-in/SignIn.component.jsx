@@ -3,6 +3,8 @@ import './SignIn.styles.scss';
 import FormInput from '../form-input/FormInput.component';
 import CustomButton from '../custom-button/CustomButton.component';
 import {auth, signInWithGoogle} from '../../firebase/firebase.utils';
+import {googleSignInStart} from '../../redux/user/user.actions';
+import {connect} from 'react-redux';
 
 export class SignIn extends Component {
     constructor(props) {

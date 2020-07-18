@@ -11,12 +11,12 @@ export const fetchCollectionsStart = () => {
     };
 };
 
-export const fetchCollectionSuccess = (collectionsMap) => ({
+export const fetchCollectionsSuccess = (collectionsMap) => ({
     type: types.FETCH_COLLECTIONS_SUCCESS,
     payload: collectionsMap,
 });
 
-export const fetchCollectionFailure = (errorMessage) => ({
+export const fetchCollectionsFailure = (errorMessage) => ({
     type: types.FETCH_COLLECTIONS_FAILURE,
     payload: errorMessage,
 });
@@ -29,8 +29,8 @@ export const fetchCollectionsStartAsync = () => {
             .get()
             .then((snapshot) => {
                 const collectionsMap = converCollectionSnapshotToMap(snapshot);
-                dispatch(fetchCollectionSuccess(collectionsMap));
+                dispatch(fetchCollectionsSuccess(collectionsMap));
             })
-            .catch((error) => dispatch(fetchCollectionFailure(error.message)));
+            .catch((error) => dispatch(fetchCollectionsFailure(error.message)));
     };
 };

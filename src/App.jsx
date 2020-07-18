@@ -1,34 +1,34 @@
 import React, {Component} from 'react';
 import './App.scss';
-import Homepage from '../pages/homepage/Homepage.component';
+import Homepage from './pages/homepage/Homepage.component';
 import {Switch, Route, Redirect} from 'react-router-dom';
-import ShopPage from '../pages/shop/Shop.component';
-import Header from '../components/header/Header.component';
-import SignInSignUp from '../pages/sign-in-and-sign-up/SignInSignUp.component';
-import {auth, createUserProfileDocument} from '../firebase/firebase.utils';
+import ShopPage from './pages/shop/Shop.component';
+import Header from './components/header/Header.component';
+import SignInSignUp from './pages/sign-in-and-sign-up/SignInSignUp.component';
+import {auth, createUserProfileDocument} from './firebase/firebase.utils';
 import {connect} from 'react-redux';
-import {setCurrentUser} from '../redux/user/user.actions';
-import {selectCurrentUser} from '../redux/user/user.selectors';
+import {setCurrentUser} from './redux/user/user.actions';
+import {selectCurrentUser} from './redux/user/user.selectors';
 import {createStructuredSelector} from 'reselect';
-import CheckoutPage from '../pages/checkout/Checkout.component';
+import CheckoutPage from './pages/checkout/Checkout.component';
 
 class App extends Component {
     unsubscribeFromAuth = null;
     componentDidMount() {
         const {setCurrentUser} = this.props;
-        this.unsubscribeFromAuth = auth.onAuthStateChanged(async (userAuth) => {
-            if (userAuth) {
-                const userRef = await createUserProfileDocument(userAuth);
-                userRef.onSnapshot((snapShot) => {
-                    setCurrentUser({
-                        id: snapShot.id,
-                        ...snapShot.data(),
-                    });
-                });
-            } else {
-                setCurrentUser(userAuth);
-            }
-        });
+        // this.unsubscribeFromAuth = auth.onAuthStateChanged(async (userAuth) => {
+        //     if (userAuth) {
+        //         const userRef = await createUserProfileDocument(userAuth);
+        //         userRef.onSnapshot((snapShot) => {
+        //             setCurrentUser({
+        //                 id: snapShot.id,
+        //                 ...snapShot.data(),
+        //             });
+        //         });
+        //     } else {
+        //         setCurrentUser(userAuth);
+        //     }
+        // });
     }
     componentWillUnmount() {
         this.unsubscribeFromAuth();
